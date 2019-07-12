@@ -1,5 +1,6 @@
 package com.ertohru.pagingrecyclerview
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import id.bukku.bukkuapps.model.product.all_product.AllProductItem
@@ -100,9 +102,33 @@ class NewProdukFragment : Fragment(), ProductViewTest {
         presenter.getAllProduct()
     }
 
+    @SuppressLint("WrongConstant")
     private fun setupRecyclerView() {
+        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView?.layoutManager = GridLayoutManager(activity, 7)
         recyclerView?.adapter = allProductAdapter
+
+//        recyclerView?.addOnScrollListener(object : PaginationScrollListener(linearLayoutManager){
+//            override fun loadMoreItems() {
+//                current += 1
+//                Log.d("RECYCLER_VIEW", "has reached the bottom ")
+//                Log.d("RECYCLER_VIEW", "has reached the current $current")
+//                loadMore()
+//
+//            }
+//
+//            override fun getTotalPageCount(): Int {
+//                return current
+//            }
+//
+//            override fun isLastPage(): Boolean {
+//                return  true
+//            }
+//
+//            override fun isLoading(): Boolean {
+//                    return true
+//            }
+//        })
 
         // check if recyclerview scroll reach the bottom
         recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
