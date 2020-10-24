@@ -2,6 +2,9 @@
 
 buildscript {
     ext.kotlin_version = '1.3.31'
+    ext.glide_version = '1.0.1'
+    ext.retrofit_version = '0.0.1'
+    ext.fb_version = '0.0.21'
     repositories {
         google()
         jcenter()
